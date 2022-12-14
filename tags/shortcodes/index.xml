@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>shortcodes - 标签 - wiz</title>
+        <link>https://blog.wiz.wang/tags/shortcodes/</link>
+        <description>shortcodes - 标签 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 17 Mar 2019 18:35:09 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/tags/shortcodes/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo文档 - 5. Shortcodes</title>
+    <link>https://blog.wiz.wang/5.shortcodes/</link>
+    <pubDate>Sun, 17 Mar 2019 18:35:09 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/5.shortcodes/</guid>
+    <description><![CDATA[<p>Hugo 提供了多个内置的 Shortcodes , 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
+</item></channel>
+</rss>

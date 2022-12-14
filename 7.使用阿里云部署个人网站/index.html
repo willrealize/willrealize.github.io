@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Hugo文档 - 7. 使用云服务器搭建个人网站 - wiz</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Hugo文档 - 7. 使用云服务器搭建个人网站" />
+<meta property="og:description" content="使用github pages访问网页的速度并不理想, 决定使用云服务器来搭建个人网站" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wiz.wang/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/" /><meta property="og:image" content="https://blog.wiz.wang/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-25T22:40:36+08:00" />
+<meta property="article:modified_time" content="2021-11-29T12:40:36+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.wiz.wang/logo.png"/>
+
+<meta name="twitter:title" content="Hugo文档 - 7. 使用云服务器搭建个人网站"/>
+<meta name="twitter:description" content="使用github pages访问网页的速度并不理想, 决定使用云服务器来搭建个人网站"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.wiz.wang/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/" /><link rel="prev" href="https://blog.wiz.wang/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://blog.wiz.wang/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo文档 - 7. 使用云服务器搭建个人网站",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.wiz.wang\/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99\/"
+        },"genre": "posts","keywords": "hugo, 建站","wordcount":  1639 ,
+        "url": "https:\/\/blog.wiz.wang\/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99\/","datePublished": "2019-11-25T22:40:36+08:00","dateModified": "2021-11-29T12:40:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"authors": [{
+                    "@type": "Person",
+                    "name": "wiz"
+                }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="wiz">wiz的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="关于">  </a><a class="menu-item" href="/categories/" title="所有分类"> 分类 </a><a class="menu-item" href="/series/" title="所有系列"> 系列 </a><a class="menu-item" href="/tags/" title="所有标签"> 标签 </a><a class="menu-item" href="/posts/" title="所有文章"> 归档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="wiz">wiz的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/about/" title="关于"></a><a class="menu-item" href="/categories/" title="所有分类">分类</a><a class="menu-item" href="/series/" title="所有系列">系列</a><a class="menu-item" href="/tags/" title="所有标签">标签</a><a class="menu-item" href="/posts/" title="所有文章">归档</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hugo文档 - 7. 使用云服务器搭建个人网站</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.wiz.wang/authors/wiz'>wiz</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">分类 <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-25">2019-11-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-11-29">2021-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1639 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#连接服务器">连接服务器</a></li>
+    <li><a href="#检查是否安装-git">检查是否安装 git</a></li>
+    <li><a href="#新建用户">新建用户</a></li>
+    <li><a href="#创建裸仓库">创建&quot;裸仓库&quot;</a></li>
+    <li><a href="#配置钩子">配置钩子</a></li>
+    <li><a href="#配置nginx">配置Nginx</a></li>
+    <li><a href="#建立连接">建立连接</a></li>
+    <li><a href="#推送">推送</a></li>
+    <li><a href="#附">附</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>使用github pages访问网页的速度并不理想, 决定使用云服务器来搭建个人网站</p>
+<h3 id="准备工作">准备工作</h3>
+<p>系统: 阿里云服务器 ubuntu 18.04</p>
+<p>工具: xshell</p>
+<p>思路: 1. 把本地的<code>public</code>目录推送到云服务器中创建的仓库<code>hugo.git</code>中, <code>hugo.git</code>只存提交信息, 静态资源会存放在<code>hugo</code>目录中, 2. 使用<code>Nginx</code>访问静态资源, 当用户访问网站时, 先经过 Nginx, Nginx 把<code>hugo</code>目录下的静态资源返回给用户</p>
+<figure><a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e70947543129551864.png" title="https://pic.imgdb.cn/item/629a49e70947543129551864.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e70947543129551864.png" data-sub-html="<h2>示意图</h2>">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e70947543129551864.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e70947543129551864.png, https://pic.imgdb.cn/item/629a49e70947543129551864.png 1.5x, https://pic.imgdb.cn/item/629a49e70947543129551864.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e70947543129551864.png"width="100%"
+        />
+    </a><figcaption class="image-caption">示意图</figcaption>
+    </figure>
+<h3 id="连接服务器">连接服务器</h3>
+<p>使用 xshell 或者 cmd 连接到云服务器, 如果使用 cmd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 如果未创建用户, 默认为 root 用户</span>
+ssh root@服务器ip
+
+<span class="c1"># 如果已经创建了用户</span>
+ssh 用户名@服务器ip
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="检查是否安装-git">检查是否安装 git</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git version
+
+<span class="c1"># 如果没安装</span>
+sudo apt install git
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="新建用户">新建用户</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用root用户创建新用户</span>
+su root
+<span class="c1"># 新建用户</span>
+adduser hugo
+<span class="c1"># 添加root权限</span>
+vim /etc/sudoers
+<span class="c1"># 在root ALL=(ALL:ALL) ALL下添加一行</span>
+hugo    <span class="nv">ALL</span><span class="o">=(</span>ALL:ALL<span class="o">)</span> ALL
+<span class="c1"># 输入 x! 退出</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>关于用户的其他指令, 这里暂时不用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 设置用户密码, 如果是普通用户可以用来修改密码</span>
+passwd 用户名
+<span class="c1"># 删除用户</span>
+sudo userdel -r 用户名
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建裸仓库">创建&quot;裸仓库&quot;</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用hugo用户</span>
+su hugo
+<span class="c1"># 进入hugo用户目录下</span>
+<span class="nb">cd</span> /home/hugo
+<span class="c1"># 创建&#34;裸仓库&#34;</span>
+git init --bare hugo.git
+<span class="c1"># 创建用来存放push内容的目录</span>
+mkdir hugo
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意</p>
+<ol>
+<li>
+<p>不要使用root用户, 否则新建目录或文件时, 权限属于root用户, 还要分配目录的拥有者: <code>chown -R hugo:hugo hugo.git</code>, 否则push时会出现权限问题, 导致推送不成功, 使用命令 <code>ll</code> 可以看到目录属于哪个用户</p>
+</li>
+<li>
+<p>执行 <code>git init –bare hugo.git</code> 会生成一个名为<code>hugo.git</code>的&quot;裸仓库&quot;, 所谓的&quot;裸仓库&quot;是没有工作区的, 只会记录 git 提交的历史信息, <code>git log</code>一下是可以看到各个版本信息的, 但是没办法进行版本回退或者切换分支的操作, 但是有一个好处是可以通过添加 hooks 钩子, 然后在同级目录下新建一个目录 hugo 用来存放项目源码, 也就是说将 git 仓库与项目源码分离</p>
+</li>
+<li>
+<p>如果不想在hugo的用户目录下存放项目, 可以在你想放的位置新建目录, 然后执行: <code>chown -R username:username 目录的绝对路径</code></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="配置钩子">配置钩子</h3>
+<p><code>post-receive</code> 钩子在整个过程完结以后运行, 可以用来更新其他系统服务或者通知用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim /home/hugo/hugo.git/hooks/post-receive
+</code></pre></td></tr></table>
+</div>
+</div><p>把下面代码复制到里面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>git --work-tree<span class="o">=</span>/home/hugo/hugo --git-dir<span class="o">=</span>/home/hugo/hugo.git checkout -f
+</code></pre></td></tr></table>
+</div>
+</div><p>配置权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod +x /home/hugo/hugo.git/hooks/post-receive
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置nginx">配置Nginx</h3>
+<p>安装Nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update 
+sudo apt install nginx
+</code></pre></td></tr></table>
+</div>
+</div><p>修改Nginx默认的配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim /etc/nginx/sites-available/default
+<span class="c1"># 把 root /var/www/html 改成 /home/hugo/hugo</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>重启服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">service nginx reload
+service nginx restart
+<span class="c1"># 使用普通账号启动或重载系统服务, 会提示需要输入密码, 根据提示输入密码即可</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>关于Nginx的其他指令, 这里暂时不用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除除了配置文件以外的所有文件</span>
+sudo apt remove nginx nginx-common
+
+<span class="c1"># 删除所有与nginx有关的东西, 包括配置文件。</span>
+sudo apt purge nginx nginx-common 
+
+<span class="c1"># 在上面命令结束后执行, 主要是删除与Nginx有关的且不再被使用的依赖包</span>
+sudo apt autoremove 
+
+<span class="c1"># 删除两个主要的包。</span>
+sudo apt remove nginx-full nginx-common 
+
+<span class="c1"># 重启nginx, 重启失败, 说明已成功卸载nginx</span>
+sudo service nginx restart
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="建立连接">建立连接</h3>
+<p>道理跟连接 GitHub 一样</p>
+<p>先配置SSH公钥, 在本地电脑执行下面命令, 会在用户目录下生成一个 .ssh 的目录, 打开 id_rsa.pub 并复制内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t RSA -C <span class="s2">&#34;邮箱地址&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在服务器中创建 .ssh 目录, 再创建文件 authorized_keys  用来存放公钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 此时所在的目录是 /home/hugo</span>
+mkdir .ssh
+touch .ssh/authorized_keys
+chmod <span class="m">600</span> .ssh/authorized_keys
+
+<span class="c1"># 打开文件, 把 id_rsa.pub 里面的公钥复制到里面</span>
+vim .ssh/authorized_keys
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="推送">推送</h3>
+<p>如何配置站点和生成public目录就不多说了</p>
+<p>在mysite下执行 <code>hugo</code>后,  把 <code>public</code>目录推送到服务器中的 <code>hugo.git</code> 仓库里面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> public
+git init
+git add .
+git commit -m <span class="s1">&#39;使用云服务器创建个人网站&#39;</span>  <span class="c1"># 如果没有设置用户和邮箱, 根据提示设置</span>
+git remote add origin hugo@服务器ip:/home/hugo/hugo.git  <span class="c1"># Linux用户名@服务器地址(或ip):仓库绝对路径</span>
+git push -u origin master  <span class="c1"># 提示输入密码, 输入 hugo 用户的密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在浏览器中输入你的域名( 如果没有购买域名, 就输入服务器IP地址)就能查看到网站了</p>
+<h3 id="附">附</h3>
+<p>初级篇</p>
+<p>使用 xftp 把 public 目录传送到服务器上, 修改/etc/nginx/sites-available/default, 把 root /var/www/html 改成 public 目录的绝对路径, 重载服务器: systemctl reload nginx或nginx -s reload, 然后在浏览器中输入服务器ip地址访问</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/%E5%BB%BA%E7%AB%99/">建站</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="Hugo文档 - 6. 使用Gitalk给网站增加评论功能"><i class="fas fa-angle-left fa-fw"></i>Hugo文档 - 6. 使用Gitalk给网站增加评论功能</a>
+            <a href="/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/" class="next" rel="next" title="使用文档 - 使用gitee作为图片仓库">使用文档 - 使用gitee作为图片仓库<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>. Theme based on <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank">DoIt</a>!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":2,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

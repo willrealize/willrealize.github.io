@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Hugo文档 - 3. 模板文件的配置 - wiz</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Hugo文档 - 3. 模板文件的配置" />
+<meta property="og:description" content="模板文件的配置和头部参数的解释" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wiz.wang/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE/" /><meta property="og:image" content="https://blog.wiz.wang/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-03-11T18:23:09+08:00" />
+<meta property="article:modified_time" content="2021-11-17T08:23:09+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.wiz.wang/logo.png"/>
+
+<meta name="twitter:title" content="Hugo文档 - 3. 模板文件的配置"/>
+<meta name="twitter:description" content="模板文件的配置和头部参数的解释"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.wiz.wang/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE/" /><link rel="prev" href="https://blog.wiz.wang/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github/" /><link rel="next" href="https://blog.wiz.wang/4.markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo文档 - 3. 模板文件的配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.wiz.wang\/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE\/"
+        },"genre": "posts","keywords": "hugo, 建站","wordcount":  854 ,
+        "url": "https:\/\/blog.wiz.wang\/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE\/","datePublished": "2019-03-11T18:23:09+08:00","dateModified": "2021-11-17T08:23:09+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"authors": [{
+                    "@type": "Person",
+                    "name": "wiz"
+                }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="wiz">wiz的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="关于">  </a><a class="menu-item" href="/categories/" title="所有分类"> 分类 </a><a class="menu-item" href="/series/" title="所有系列"> 系列 </a><a class="menu-item" href="/tags/" title="所有标签"> 标签 </a><a class="menu-item" href="/posts/" title="所有文章"> 归档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="wiz">wiz的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/about/" title="关于"></a><a class="menu-item" href="/categories/" title="所有分类">分类</a><a class="menu-item" href="/series/" title="所有系列">系列</a><a class="menu-item" href="/tags/" title="所有标签">标签</a><a class="menu-item" href="/posts/" title="所有文章">归档</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hugo文档 - 3. 模板文件的配置</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.wiz.wang/authors/wiz'>wiz</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">分类 <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-03-11">2019-03-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-11-17">2021-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 854 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建文件的命令">创建文件的命令</a></li>
+    <li><a href="#模板">模板</a>
+      <ul>
+        <li><a href="#初始模板">初始模板</a></li>
+        <li><a href="#我的模板">我的模板</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>模板文件的配置和头部参数的解释</p>
+<h3 id="创建文件的命令">创建文件的命令</h3>
+<p>首先从创建文件的命令说起</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用命令生成文件</span>
+hugo new posts/filename.md
+</code></pre></td></tr></table>
+</div>
+</div><p>执行上面命令, 会使用 archetypes/default.md 模板进行创建文件</p>
+<h3 id="模板">模板</h3>
+<h4 id="初始模板">初始模板</h4>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e70947543129551843.png" title="https://pic.imgdb.cn/item/629a49e70947543129551843.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e70947543129551843.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e70947543129551843.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e70947543129551843.png, https://pic.imgdb.cn/item/629a49e70947543129551843.png 1.5x, https://pic.imgdb.cn/item/629a49e70947543129551843.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e70947543129551843.png"height="120"width="900"
+        />
+    </a>
+<p><code>title</code>: 文章标题, 显示在主页的</p>
+<p><code>date</code>: 文章创建日期</p>
+<p><code>draft</code>: 是否为草稿</p>
+<p>官方做法: 当使用命令创建的时候, 文件为草稿, 就是 <code>draft: true</code>, 执行 <code>hugo server</code> 开启服务, 打开本地网站后, 是看不到新写的文章的, 需要执行 <code>hugo server -D</code> 或 <code>hugo server --buildDrafts</code> 才能看到, 写好文章后再修改为 false, 然后生成静态网页发布</p>
+<blockquote>
+<p>注意</p>
+<p>如果不修改为 <code>false</code> , 把执行 <code>hugo</code> 命令生成的 <code>public</code> 目录部署到 <code>GitHub</code>上, 打开 <a href="https://willrealize.github.io/" target="_blank" rel="noopener noreffer">https://willrealize.github.io/</a> 是看不到这篇文章的</p>
+</blockquote>
+<p>当然, 模板可以修改!</p>
+<h4 id="我的模板">我的模板</h4>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e7094754312955185b.png" title="https://pic.imgdb.cn/item/629a49e7094754312955185b.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e7094754312955185b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e7094754312955185b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e7094754312955185b.png, https://pic.imgdb.cn/item/629a49e7094754312955185b.png 1.5x, https://pic.imgdb.cn/item/629a49e7094754312955185b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e7094754312955185b.png"height="500"width="900"
+        />
+    </a>
+<p>参照官方文档: <a href="https://hugodoit.pages.dev/zh-cn/theme-documentation-content/" target="_blank" rel="noopener noreffer">https://hugodoit.pages.dev/zh-cn/theme-documentation-content/</a></p>
+<p><code>&lt;!--more--&gt;</code>: 摘要分隔符, 摘要分隔符之前的内容将用作该文章的摘要</p>
+<p><code>authors</code>: 作者, 可以有多个, 如果要配置多个作者, 在 <code>mysite/data</code> 下创建 <code>authors</code> 目录, 目录下面创建每个作者的配置文件</p>
+<p><code>lastmod</code>: 最后修改时间, 当写完或再次修改文章时, 修改一下这个参数的值</p>
+<p><code>draft</code>: 我是设置为 <code>false</code> , 这样就可以直接使用 <code>hugo server</code> 开启服务, 如果不想发布, 则改为 <code>true</code></p>
+<p><code>categories</code>: 分类功能, 想把文章放在哪个分类, 就把分类名写在后边</p>
+<p><code>tags</code>: 标签功能, 想把文章想打上什么标签, 就把标签名写在后边</p>
+<p><code>toc</code>: 是用来配置文章页面目录的, 还有子参数:</p>
+<ul>
+<li><code>auto</code>: 是用来控制目录是否自动折叠, 默认设置为 <code>false</code> 不自动折叠, 如果目录太长了, 可以配置为 <code>true</code></li>
+<li><code>enable</code>: 默认是打开的, 使用目录功能就设置为 <code>true</code>, 不想使用就设置为 <code>false</code>, 暂时不用</li>
+<li><code>keepStatic</code>: 不保持使用文章前面的静态目录就设置为 <code>false</code>, 这样目录就会显示在右边, 暂时不用</li>
+</ul>
+<p><code>comment</code>: 评论功能, 默认是打开的, 有些页面不想设置评论功能可以设置为 <code>false</code> 关闭</p>
+<p><code>lightgallery</code>: 画廊功能, 必须与图片语法配合使用: {{&lt; image src=&ldquo;图片路径&rdquo; caption=&ldquo;图片标题&rdquo; width=&ldquo;宽&rdquo; height=&ldquo;高&rdquo; &gt;}}</p>
+<p><code>featuredImage</code>: 显示在文章最上方和主页的特色图片</p>
+<p>当然还有很多别的参数, 可以查看上面的官方文档(在 <strong>3 前置参数</strong> 中), 计划以后会添加一些别的参数, 比如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># 这三个是一起使用的, 用来配置文章所属系列的</span><span class="w">
+</span><span class="w"></span><span class="nt">series</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="w"></span><span class="nt">series_weight</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w"></span><span class="nt">seriesNavigation</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/%E5%BB%BA%E7%AB%99/">建站</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github/" class="prev" rel="prev" title="Hugo文档 - 2. 部署个人网站到GitHub"><i class="fas fa-angle-left fa-fw"></i>Hugo文档 - 2. 部署个人网站到GitHub</a>
+            <a href="/4.markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="next" rel="next" title="Hugo文档 - 4. Markdown基本语法">Hugo文档 - 4. Markdown基本语法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>. Theme based on <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank">DoIt</a>!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":2,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">使用文档 - 使用gitea搭建git服务器 - wiz</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="使用文档 - 使用gitea搭建git服务器" />
+<meta property="og:description" content="搭建属于自己的git服务器, 不用推送到GitHub或者Gitee" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" /><meta property="og:image" content="https://blog.wiz.wang/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-20T00:45:06+08:00" />
+<meta property="article:modified_time" content="2021-11-20T00:45:06+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.wiz.wang/logo.png"/>
+
+<meta name="twitter:title" content="使用文档 - 使用gitea搭建git服务器"/>
+<meta name="twitter:description" content="搭建属于自己的git服务器, 不用推送到GitHub或者Gitee"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" /><link rel="prev" href="https://blog.wiz.wang/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" /><link rel="next" href="https://blog.wiz.wang/6.%E9%85%8D%E7%BD%AEtypora%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用文档 - 使用gitea搭建git服务器",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.wiz.wang\/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93\/"
+        },"genre": "posts","keywords": "gitea, ubuntu, windows","wordcount":  2674 ,
+        "url": "https:\/\/blog.wiz.wang\/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93\/","datePublished": "2021-11-20T00:45:06+08:00","dateModified": "2021-11-20T00:45:06+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"authors": [{
+                    "@type": "Person",
+                    "name": "wiz"
+                }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="wiz">wiz的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="关于">  </a><a class="menu-item" href="/categories/" title="所有分类"> 分类 </a><a class="menu-item" href="/series/" title="所有系列"> 系列 </a><a class="menu-item" href="/tags/" title="所有标签"> 标签 </a><a class="menu-item" href="/posts/" title="所有文章"> 归档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="wiz">wiz的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/about/" title="关于"></a><a class="menu-item" href="/categories/" title="所有分类">分类</a><a class="menu-item" href="/series/" title="所有系列">系列</a><a class="menu-item" href="/tags/" title="所有标签">标签</a><a class="menu-item" href="/posts/" title="所有文章">归档</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用文档 - 使用gitea搭建git服务器</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.wiz.wang/authors/wiz'>wiz</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">分类 <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2674 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#windows版">Windows版</a>
+      <ul>
+        <li><a href="#下载">下载</a></li>
+        <li><a href="#注册为windows服务">注册为Windows服务</a></li>
+        <li><a href="#运行">运行</a></li>
+        <li><a href="#删除">删除</a></li>
+      </ul>
+    </li>
+    <li><a href="#ubuntu版">Ubuntu版</a>
+      <ul>
+        <li><a href="#服务启动版">服务启动版</a>
+          <ul>
+            <li><a href="#创建-mysql-用户">创建 MySQL 用户</a></li>
+            <li><a href="#安装gitea">安装gitea</a></li>
+            <li><a href="#修改配置">修改配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#docker-compose版">Docker-compose版</a>
+          <ul>
+            <li><a href="#安装docker-compose">安装docker-compose</a></li>
+            <li><a href="#安装gitea-1">安装Gitea</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>搭建属于自己的git服务器, 不用推送到GitHub或者Gitee</p>
+<h3 id="windows版">Windows版</h3>
+<h4 id="下载">下载</h4>
+<p>官网: <a href="https://dl.gitea.io/" target="_blank" rel="noopener noreffer">https://dl.gitea.io/</a></p>
+<p>GitHub: <a href="https://github.com/go-gitea/gitea/releases" target="_blank" rel="noopener noreffer">https://github.com/go-gitea/gitea/releases</a></p>
+<p>根据自己的系统下载, 这里选择的版本: gitea-1.15.6-windows-4.0-amd64.exe</p>
+<p>下载好以后把文件名改为 <code>gitea.exe</code></p>
+<h4 id="注册为windows服务">注册为Windows服务</h4>
+<p>在你想要的地方创建一个 <code>Gitea</code> 目录, 用来存放 <code>gitea.exe</code></p>
+<p>要注册为Windows服务，首先以 <code>Administrator</code> 身份运行 <code>cmd</code>，然后执行以下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下面为命令格式</span>
+sc create gitea <span class="nv">start</span><span class="o">=</span> auto <span class="nv">binPath</span><span class="o">=</span> <span class="s2">&#34;\&#34;你gitea.exe的路径\&#34; web --config \&#34;你Gitea目录的路径\custom\conf\app.ini\&#34;&#34;</span>
+
+<span class="c1"># 比如, 下面是我的路径, 我是把 gitea.exe 放在了 C:\All\IT\Gitea 目录下</span>
+sc create gitea <span class="nv">start</span><span class="o">=</span> auto <span class="nv">binPath</span><span class="o">=</span> <span class="s2">&#34;\&#34;C:\All\IT\Gitea\gitea.exe\&#34; web --config \&#34;C:\All\IT\Gitea\custom\conf\app.ini\&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="运行">运行</h4>
+<p><code>Windows+R</code> 调出运行界面, 输入 <code>services.msc</code> 回车跳到服务窗口, 找到 <code>gitea</code>，右键启动</p>
+<p>在浏览器打开 http://localhost:3000 就可以访问了, 如果你修改了端口，请访问对应的端口，3000是默认端口</p>
+<blockquote>
+<p>提示</p>
+<p>Windows版本推荐使用SQLite</p>
+</blockquote>
+<h4 id="删除">删除</h4>
+<p>先删除Windows服务, 以 <code>Administrator</code> 身份运行 <code>cmd</code>, 执行以下命令, 然后删除 <code>gitea.exe </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sc delete gitea
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ubuntu版">Ubuntu版</h3>
+<h4 id="服务启动版">服务启动版</h4>
+<p>参考文档: <a href="https://docs.gitea.io/en-us/install-from-binary/" target="_blank" rel="noopener noreffer">https://docs.gitea.io/en-us/install-from-binary/</a></p>
+<p>系统版本: ubuntu 18.04</p>
+<p>gitea版本: gitea-1.15.6-linux-amd64</p>
+<p>MySQL版本: MySQL 8.0</p>
+<blockquote>
+<p>提示</p>
+<p>如果没有安装MySQL, 请跳过 <strong>创建 MySQL用户</strong> 这些步骤</p>
+</blockquote>
+<h5 id="创建-mysql-用户">创建 MySQL 用户</h5>
+<p>登录数据库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mysql -uroot -p  <span class="c1"># 输入密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>创建gitea用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="kt">SET</span><span class="w"> </span><span class="n">old_passwords</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1"># MySQL8.0不用执行这一句
+</span><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;gitea&#39;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;你想设置的密码&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>创建gitea数据库, 这里采用utf8mb4而不是utf8作为字符集, 是因为utf8mb4支持的Unicode字符更多</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">gitea</span><span class="w"> </span><span class="k">CHARACTER</span><span class="w"> </span><span class="kt">SET</span><span class="w"> </span><span class="s1">&#39;utf8mb4&#39;</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>给gitea用户赋予数据库的权限, 刷新并退出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">gitea</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;gitea&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">exit</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>测试数据库连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mysql -ugitea -p  <span class="c1"># 输入密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>提示</p>
+<p>这里的用户名, 密码, 数据库名等下会在创建站点时用到</p>
+</blockquote>
+<h5 id="安装gitea">安装gitea</h5>
+<p>以下操作全在 <code>root</code> 用户下执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span>  <span class="c1"># 此时应该在当前用户目录下</span>
+
+su  <span class="c1"># 输入密码后, 不要再进入其他目录了</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>下载 gitea</strong></p>
+<p>使用wget下载gitea二进制文件, 可以到官网或github下载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget -O gitea https://dl.gitea.io/gitea/1.15.6/gitea-1.15.6-linux-amd64
+
+<span class="c1"># 下载完成后给文件赋予权限</span>
+chmod +x gitea
+
+<span class="c1"># 将 gitea 二进制文件移动到指定路径</span>
+mv gitea-1.15.6-linux-amd64 /usr/local/bin/gitea
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>准备环境</strong></p>
+<p>检查服务器上是否安装了 Git, 如果不是, 请先安装它</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git --version
+</code></pre></td></tr></table>
+</div>
+</div><p>创建用户 <code>git</code> 用来运行 gitea</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加一个名为 git 的用户</span>
+adduser <span class="se">\
+</span><span class="se"></span>   --system <span class="se">\
+</span><span class="se"></span>   --shell /bin/bash <span class="se">\
+</span><span class="se"></span>   --gecos <span class="s1">&#39;Git Version Control&#39;</span> <span class="se">\
+</span><span class="se"></span>   --group <span class="se">\
+</span><span class="se"></span>   --disabled-password <span class="se">\
+</span><span class="se"></span>   --home /home/git <span class="se">\
+</span><span class="se"></span>   git
+</code></pre></td></tr></table>
+</div>
+</div><p>创建所需的目录结构</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir -p /var/lib/gitea/<span class="o">{</span>custom,data,log<span class="o">}</span>
+chown -R git:git /var/lib/gitea/
+chmod -R <span class="m">750</span> /var/lib/gitea/
+mkdir /etc/gitea
+chown root:git /etc/gitea
+chmod <span class="m">770</span> /etc/gitea
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意</p>
+<p>为了<code>git</code>这个用户, 暂时的把目录<code>/etc/gitea</code>设置了写权限, 以便安装的时候程序可以写入配置文件, <strong>安装完成后</strong>, 建议使用以下方法将权限设置为只读, 下面两句指令暂时不执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">750</span> /etc/gitea
+chmod <span class="m">640</span> /etc/gitea/app.ini
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p><strong>运行 gitea</strong></p>
+<p>这里采用官方推荐的方法, 通过创建一个<strong>服务文件</strong>来自动启动 <code>gitea</code>, 在 <code>/etc/systemd/system</code> 目录下创建一个名为 <code>gitea.service</code> 的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/systemd/system/gitea.service
+</code></pre></td></tr></table>
+</div>
+</div><p>将以下内容复制到 <code>gitea.service</code> 中，本文采用的是<code>MySQL</code>数据库, 需要把<code>MySQL</code>的注释打开，如果采用其他的数据库, 可以打开相关配置的注释, 并将<code>MySQL</code>的配置注释了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
+Description=Gitea (Git with a cup of tea)
+After=syslog.target
+After=network.target
+###
+# Don&#39;t forget to add the database service dependencies
+###
+#
+Wants=mysql.service
+After=mysql.service
+#
+#Wants=mariadb.service
+#After=mariadb.service
+#
+#Wants=postgresql.service
+#After=postgresql.service
+#
+#Wants=memcached.service
+#After=memcached.service
+#
+#Wants=redis.service
+#After=redis.service
+#
+###
+# If using socket activation for main http/s
+###
+#
+#After=gitea.main.socket
+#Requires=gitea.main.socket
+#
+###
+# (You can also provide gitea an http fallback and/or ssh socket too)
+#
+# An example of /etc/systemd/system/gitea.main.socket
+###
+##
+## [Unit]
+## Description=Gitea Web Socket
+## PartOf=gitea.service
+##
+## [Socket]
+## Service=gitea.service
+## ListenStream=&lt;some_port&gt;
+## NoDelay=true
+##
+## [Install]
+## WantedBy=sockets.target
+##
+###
+
+[Service]
+# Modify these two values and uncomment them if you have
+# repos with lots of files and get an HTTP error 500 because
+# of that
+###
+#LimitMEMLOCK=infinity
+#LimitNOFILE=65535
+RestartSec=2s
+Type=simple
+User=git
+Group=git
+WorkingDirectory=/var/lib/gitea/
+# If using Unix socket: tells systemd to create the /run/gitea folder, which will contain the gitea.sock file
+# (manually creating /run/gitea doesn&#39;t work, because it would not persist across reboots)
+#RuntimeDirectory=gitea
+ExecStart=/usr/local/bin/gitea web --config /etc/gitea/app.ini
+Restart=always
+Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/var/lib/gitea
+# If you install Git to directory prefix other than default PATH (which happens
+# for example if you install other versions of Git side-to-side with
+# distribution version), uncomment below line and add that prefix to PATH
+# Don&#39;t forget to place git-lfs binary on the PATH below if you want to enable
+# Git LFS support
+#Environment=PATH=/path/to/git/bin:/bin:/sbin:/usr/bin:/usr/sbin
+# If you want to bind Gitea to a port below 1024, uncomment
+# the two values below, or use socket activation to pass Gitea its ports as above
+###
+#CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+#AmbientCapabilities=CAP_NET_BIND_SERVICE
+###
+
+[Install]
+WantedBy=multi-user.target
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>启动gitea服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> gitea
+systemctl start gitea
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>安装界面</strong></p>
+<p>打开浏览器访问页面: http://你的服务器ip:3000/, 此时进入 gitea 的安装页面, 首先需要设置</p>
+<p>开始是数据库设置, 填入上面创建的MySQL用户, 密码和数据库名, 如果没安装MySQL就选择SQLite3</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png" title="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png, https://pic.imgdb.cn/item/629a4b460947543129566e1f.png 1.5x, https://pic.imgdb.cn/item/629a4b460947543129566e1f.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b460947543129566e1f.png"height="630"width="100%"
+        />
+    </a>
+<blockquote>
+<p>提示</p>
+<p>如果只在本地使用, 数据库主机不用修改</p>
+</blockquote>
+<p>然后是一般设置, 站点名称可以根据自己的需要修改, 如果只在本机使用, 其他选项不要改动, 如果在服务器中配置, 请参照下面<strong>docker-compose版</strong>图片中的配置</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b460947543129566e22.png" title="https://pic.imgdb.cn/item/629a4b460947543129566e22.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b460947543129566e22.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b460947543129566e22.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b460947543129566e22.png, https://pic.imgdb.cn/item/629a4b460947543129566e22.png 1.5x, https://pic.imgdb.cn/item/629a4b460947543129566e22.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b460947543129566e22.png"height="600"width="100%"
+        />
+    </a>
+<p>然后是可选设置, 把Gravatar禁用了, 国内访问不了</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png" title="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png, https://pic.imgdb.cn/item/629a4b460947543129566e2b.png 1.5x, https://pic.imgdb.cn/item/629a4b460947543129566e2b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b460947543129566e2b.png"height="600"width="100%"
+        />
+    </a>
+<p>点击管理员帐号设置展开选项, 可以设置管理员用户, 在这里不设置也可以, 默认会把创建的第一个用户作为管理员用户</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b460947543129566e35.png" title="https://pic.imgdb.cn/item/629a4b460947543129566e35.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b460947543129566e35.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b460947543129566e35.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b460947543129566e35.png, https://pic.imgdb.cn/item/629a4b460947543129566e35.png 1.5x, https://pic.imgdb.cn/item/629a4b460947543129566e35.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b460947543129566e35.png"height="350"width="100%"
+        />
+    </a>
+<p>点击立即安装, 你就有了自己的git服务器, 剩下的操作与GitHub一样, 就不过多的介绍了</p>
+<blockquote>
+<p>提示</p>
+<p>网站已经创建成功, 别忘了关闭文件权限</p>
+</blockquote>
+<p><strong>关闭权限</strong></p>
+<p>需要关闭上面为了<code>git</code>这个用户暂时开启的写权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">750</span> /etc/gitea
+chmod <span class="m">640</span> /etc/gitea/app.ini
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="修改配置">修改配置</h5>
+<p>如果想修改配置, 可以通过修改配置文件进行修改, 比如想禁止用户注册</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim /etc/gitea/app.ini
+
+<span class="c1"># 找到服务配置, 更改为true</span>
+<span class="o">[</span>service<span class="o">]</span>
+<span class="nv">DISABLE_REGISTRATION</span>              <span class="o">=</span> <span class="nb">true</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>更改后需要重载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload
+<span class="c1"># 如果不行就使用</span>
+systemctl restart gitea
+</code></pre></td></tr></table>
+</div>
+</div><p>这时候在Gitea主页就没有注册的入口了</p>
+<h4 id="docker-compose版">Docker-compose版</h4>
+<h5 id="安装docker-compose">安装docker-compose</h5>
+<p>使用二进制包安装很简单</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 直接到官网下载: https://github.com/docker/compose/releases/, 使用 xftp 上传到服务器</span>
+<span class="c1"># 把文件移动到 /usr/local/bin/ 并修改文件名为 docker-compose</span>
+<span class="c1"># 然后执行下面命令</span>
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre></td></tr></table>
+</div>
+</div><p>查看版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker-compose --version
+</code></pre></td></tr></table>
+</div>
+</div><p>卸载也很简单, 只需要删除文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo rm /usr/local/bin/docker-compose
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="安装gitea-1">安装Gitea</h5>
+<p>参照官方文档: <a href="https://docs.gitea.io/zh-cn/install-with-docker/#" target="_blank" rel="noopener noreffer">https://docs.gitea.io/zh-cn/install-with-docker/#</a>基本</p>
+<p><strong>安装</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在想要的位置创建 Gitea 目录, 进入后创建 docker-compose.yml 文件</span>
+<span class="nb">cd</span> ~
+mkdir Gitea
+vim docker-compose.yml
+
+<span class="c1"># 然后把下面的内容粘贴进去, 保存退出</span>
+
+version: <span class="s2">&#34;3&#34;</span>
+
+networks:
+  gitea:
+    external: <span class="nb">false</span>
+
+services:
+  server:
+    image: gitea/gitea:1.15.7
+    container_name: gitea
+    environment:
+      - <span class="nv">USER_UID</span><span class="o">=</span><span class="m">1000</span>
+      - <span class="nv">USER_GID</span><span class="o">=</span><span class="m">1000</span>
+    restart: always
+    networks:
+      - gitea
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - <span class="s2">&#34;13000:3000&#34;</span>
+      - <span class="s2">&#34;10022:22&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>启动</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以在后台启动 Gitea</span>
+docker-compose up -d
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>其他命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 显示 Gitea 是否正确启动</span>
+docker-compose ps
+<span class="c1"># 查看日志</span>
+docker-compose logs 
+<span class="c1"># 关闭设置, 这将停止并杀死容器, 这些卷将仍然存在</span>
+docker-compose down
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>安装界面</strong></p>
+<p>使用浏览器访问 http://server-ip:13000 , 注意某些地方需要安装下图中来配置</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b460947543129566e44.png" title="https://pic.imgdb.cn/item/629a4b460947543129566e44.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b460947543129566e44.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b460947543129566e44.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b460947543129566e44.png, https://pic.imgdb.cn/item/629a4b460947543129566e44.png 1.5x, https://pic.imgdb.cn/item/629a4b460947543129566e44.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b460947543129566e44.png"height="450"width="100%"
+        />
+    </a>
+<p>点击安装, 剩下的操作跟GitHub的操作一样</p>
+<blockquote>
+<p>注意</p>
+<p>1.如果点击安装时, 上图中<strong>以用户名运行</strong>报错, 按照上面<strong>服务启动版&ndash;&gt;安装gitea&ndash;&gt;准备环境</strong>中的步骤创建<strong>git用户</strong></p>
+<p>2.配置文件在: /home/wz/Gitea/gitea/gitea/conf/app.ini</p>
+</blockquote>
+<p><strong>测试功能</strong></p>
+<ol>
+<li>登录gitea服务器, 创建一个仓库</li>
+<li>点击右上角头像&ndash;&gt;设置&ndash;&gt;SSH/GPG秘钥&ndash;&gt;增加秘钥</li>
+<li>然后把电脑中的公钥复制进去</li>
+<li>在电脑中新建目录, 把仓库clone下来</li>
+<li>新建文件, 执行 git add . &ndash;&gt; git commit -m &quot;&quot; &ndash;&gt; git push, 然后查看远程仓库</li>
+</ol></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gitea/">gitea</a>,&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/windows/">windows</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" class="prev" rel="prev" title="使用文档 - 使用Halo搭建个人博客网站"><i class="fas fa-angle-left fa-fw"></i>使用文档 - 使用Halo搭建个人博客网站</a>
+            <a href="/6.%E9%85%8D%E7%BD%AEtypora%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" class="next" rel="next" title="使用文档 - 配置Typora中的图片上传功能">使用文档 - 配置Typora中的图片上传功能<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>. Theme based on <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank">DoIt</a>!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":2,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

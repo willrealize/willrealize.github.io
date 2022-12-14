@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Hugo文档 - 2. 部署个人网站到GitHub - wiz</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Hugo文档 - 2. 部署个人网站到GitHub" />
+<meta property="og:description" content="新申请的github账号, 使用公钥与windows建立连接, 把public目录推送到远程仓库" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wiz.wang/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github/" /><meta property="og:image" content="https://blog.wiz.wang/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-03-11T17:43:59+08:00" />
+<meta property="article:modified_time" content="2021-11-15T20:43:59+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.wiz.wang/logo.png"/>
+
+<meta name="twitter:title" content="Hugo文档 - 2. 部署个人网站到GitHub"/>
+<meta name="twitter:description" content="新申请的github账号, 使用公钥与windows建立连接, 把public目录推送到远程仓库"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.wiz.wang/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github/" /><link rel="prev" href="https://blog.wiz.wang/1.%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" /><link rel="next" href="https://blog.wiz.wang/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo文档 - 2. 部署个人网站到GitHub",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.wiz.wang\/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github\/"
+        },"genre": "posts","keywords": "hugo, 建站","wordcount":  702 ,
+        "url": "https:\/\/blog.wiz.wang\/2.%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%88%B0github\/","datePublished": "2019-03-11T17:43:59+08:00","dateModified": "2021-11-15T20:43:59+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"authors": [{
+                    "@type": "Person",
+                    "name": "wiz"
+                }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="wiz">wiz的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="关于">  </a><a class="menu-item" href="/categories/" title="所有分类"> 分类 </a><a class="menu-item" href="/series/" title="所有系列"> 系列 </a><a class="menu-item" href="/tags/" title="所有标签"> 标签 </a><a class="menu-item" href="/posts/" title="所有文章"> 归档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="wiz">wiz的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/about/" title="关于"></a><a class="menu-item" href="/categories/" title="所有分类">分类</a><a class="menu-item" href="/series/" title="所有系列">系列</a><a class="menu-item" href="/tags/" title="所有标签">标签</a><a class="menu-item" href="/posts/" title="所有文章">归档</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hugo文档 - 2. 部署个人网站到GitHub</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.wiz.wang/authors/wiz'>wiz</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">分类 <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-03-11">2019-03-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-11-15">2021-11-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 702 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-创建仓库">1 创建仓库</a>
+      <ul>
+        <li><a href="#先在git-hub上新建仓库">先在Git hub上新建仓库</a></li>
+        <li><a href="#进入public目录并初始化">进入public目录并初始化</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-生成秘钥">2 生成秘钥</a></li>
+    <li><a href="#3-把公钥放到git-hub上">3 把公钥放到git hub上</a></li>
+    <li><a href="#4-建立连接">4 建立连接</a></li>
+    <li><a href="#5-碰到的问题">5 碰到的问题</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>新申请的github账号, 使用公钥与windows建立连接, 把public目录推送到远程仓库</p>
+<h3 id="1-创建仓库">1 创建仓库</h3>
+<h4 id="先在git-hub上新建仓库">先在Git hub上新建仓库</h4>
+<p><strong>进入GitHub, 点击右上角图标, 新建仓库</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png" title="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png, https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png 1.5x, https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d0094754312954f8a5.png"height="188"width="900"
+        />
+    </a>
+<p><strong>填写仓库名, 必须以 用户名.github.io 这种格式, 且必须公开</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png" title="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png, https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png 1.5x, https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d0094754312954f8bf.png"height="350"width="1500"
+        />
+    </a>
+<p><strong>点击确认后创建成功</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d7094754312955023b.png" title="https://pic.imgdb.cn/item/629a49d7094754312955023b.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d7094754312955023b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d7094754312955023b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d7094754312955023b.png, https://pic.imgdb.cn/item/629a49d7094754312955023b.png 1.5x, https://pic.imgdb.cn/item/629a49d7094754312955023b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d7094754312955023b.png"height="288"width="1500"
+        />
+    </a>
+<h4 id="进入public目录并初始化">进入public目录并初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git init
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>把public提交到本地仓库</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span class="s2">&#34;new site&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-生成秘钥">2 生成秘钥</h3>
+<p><strong>执行下面指令后连续确认, 直到生成图案</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -C <span class="s2">&#34;13215686668@qq.com&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e00947543129551077.png" title="https://pic.imgdb.cn/item/629a49e00947543129551077.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e00947543129551077.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e00947543129551077.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e00947543129551077.png, https://pic.imgdb.cn/item/629a49e00947543129551077.png 1.5x, https://pic.imgdb.cn/item/629a49e00947543129551077.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e00947543129551077.png"height="350"width="1000"
+        />
+    </a>
+<p><strong>在C盘用户目录下找到.ssh目录, 可以看到里面生成了一个秘钥一个公钥, 秘钥不用管, 把公钥里面的内容拷贝下来</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d70947543129550254.png" title="https://pic.imgdb.cn/item/629a49d70947543129550254.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d70947543129550254.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d70947543129550254.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d70947543129550254.png, https://pic.imgdb.cn/item/629a49d70947543129550254.png 1.5x, https://pic.imgdb.cn/item/629a49d70947543129550254.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d70947543129550254.png"height="130"width="1000"
+        />
+    </a>
+<h3 id="3-把公钥放到git-hub上">3 把公钥放到git hub上</h3>
+<p><strong>进入GitHub, 点击右上角图标, 点击settings</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d70947543129550241.png" title="https://pic.imgdb.cn/item/629a49d70947543129550241.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d70947543129550241.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d70947543129550241.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d70947543129550241.png, https://pic.imgdb.cn/item/629a49d70947543129550241.png 1.5x, https://pic.imgdb.cn/item/629a49d70947543129550241.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d70947543129550241.png"height="450"width="1000"
+        />
+    </a>
+<p><strong>再点击左边选项: SSH and GPG keys</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d7094754312955025c.png" title="https://pic.imgdb.cn/item/629a49d7094754312955025c.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d7094754312955025c.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d7094754312955025c.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d7094754312955025c.png, https://pic.imgdb.cn/item/629a49d7094754312955025c.png 1.5x, https://pic.imgdb.cn/item/629a49d7094754312955025c.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d7094754312955025c.png"height="180"width="1000"
+        />
+    </a>
+<p><strong>点击 New SSH key</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d70947543129550268.png" title="https://pic.imgdb.cn/item/629a49d70947543129550268.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d70947543129550268.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d70947543129550268.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d70947543129550268.png, https://pic.imgdb.cn/item/629a49d70947543129550268.png 1.5x, https://pic.imgdb.cn/item/629a49d70947543129550268.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d70947543129550268.png"height="200"width="1000"
+        />
+    </a>
+<p><strong>出现新的页面, Title随便写, Key就是用户目录下的公钥, 打开公钥文件, 把内容全部复制过来</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e00947543129551066.png" title="https://pic.imgdb.cn/item/629a49e00947543129551066.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e00947543129551066.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e00947543129551066.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e00947543129551066.png, https://pic.imgdb.cn/item/629a49e00947543129551066.png 1.5x, https://pic.imgdb.cn/item/629a49e00947543129551066.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e00947543129551066.png"height="320"width="1000"
+        />
+    </a>
+<p><strong>点击 Add SSH key 创建完成</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e0094754312955106c.png" title="https://pic.imgdb.cn/item/629a49e0094754312955106c.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e0094754312955106c.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e0094754312955106c.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e0094754312955106c.png, https://pic.imgdb.cn/item/629a49e0094754312955106c.png 1.5x, https://pic.imgdb.cn/item/629a49e0094754312955106c.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e0094754312955106c.png"height="230"width="1000"
+        />
+    </a>
+<h3 id="4-建立连接">4 建立连接</h3>
+<p><strong>打开git bash进入public目录下, 用 ssh -T <a href="mailto:git@github.com" rel="">git@github.com</a> , 测试是否能够连接成功, 如果使用码云: ssh -T <a href="mailto:git@gitee.com" rel="">git@gitee.com</a></strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e00947543129551080.png" title="https://pic.imgdb.cn/item/629a49e00947543129551080.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e00947543129551080.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e00947543129551080.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e00947543129551080.png, https://pic.imgdb.cn/item/629a49e00947543129551080.png 1.5x, https://pic.imgdb.cn/item/629a49e00947543129551080.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e00947543129551080.png"height="135"width="1000"
+        />
+    </a>
+<p><strong>本地仓库关联远程仓库: git remote add origin 远程仓库的地址, 指令在建立远程仓库成功时可以看到</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d7094754312955023b.png" title="https://pic.imgdb.cn/item/629a49d7094754312955023b.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d7094754312955023b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d7094754312955023b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d7094754312955023b.png, https://pic.imgdb.cn/item/629a49d7094754312955023b.png 1.5x, https://pic.imgdb.cn/item/629a49d7094754312955023b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d7094754312955023b.png"height="300"width="1000"
+        />
+    </a>
+<p><strong>这里选择SSH方式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git remote add origin git@github.com:willrealize/willrealize.github.io.git
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>关联了远程仓库之后, 我们可以把本地的仓库的内容推上去, 第一次推送要加 -u, 以后就可以直接使用 git push , 出现下面的内容, 则本地仓库的内容已经推到git hub上了</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git push -u origin master
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="https://pic.imgdb.cn/item/629a49e0094754312955108b.png" title="https://pic.imgdb.cn/item/629a49e0094754312955108b.png" data-thumbnail="https://pic.imgdb.cn/item/629a49e0094754312955108b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49e0094754312955108b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49e0094754312955108b.png, https://pic.imgdb.cn/item/629a49e0094754312955108b.png 1.5x, https://pic.imgdb.cn/item/629a49e0094754312955108b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49e0094754312955108b.png"height="200"width="1000"
+        />
+    </a>
+<p><strong>等待一分钟, 打开 <a href="https://willrealize.github.io/" target="_blank" rel="noopener noreffer">https://willrealize.github.io/</a> , 就可以看到博客了</strong></p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png" title="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png" data-thumbnail="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png, https://pic.imgdb.cn/item/629a49d0094754312954f80b.png 1.5x, https://pic.imgdb.cn/item/629a49d0094754312954f80b.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49d0094754312954f80b.png"height="500"width="1000"
+        />
+    </a>
+<h3 id="5-碰到的问题">5 碰到的问题</h3>
+<p>如果上传到GitHub, 隔一段时间打开还没有刷新网站, 要查看代码提交页面, 如下图, 如果不是对号(√)是错号(×), 说明提交的某处有问题, GitHub不会帮你更新到最新提交的页面, 要点击错号查看错误, 一般有错误报告, 跟着报告定位问题, 解决问题后重新生成 public 目录提交</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png" title="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png" data-thumbnail="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png"
+            data-srcset="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png, https://pic.imgdb.cn/item/629a49c7094754312954ec75.png 1.5x, https://pic.imgdb.cn/item/629a49c7094754312954ec75.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a49c7094754312954ec75.png"height="300"width="1000"
+        />
+    </a></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/%E5%BB%BA%E7%AB%99/">建站</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/1.%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" class="prev" rel="prev" title="Hugo文档 - 1. 创建个人博客网站"><i class="fas fa-angle-left fa-fw"></i>Hugo文档 - 1. 创建个人博客网站</a>
+            <a href="/3.%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE/" class="next" rel="next" title="Hugo文档 - 3. 模板文件的配置">Hugo文档 - 3. 模板文件的配置<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>. Theme based on <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank">DoIt</a>!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":2,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

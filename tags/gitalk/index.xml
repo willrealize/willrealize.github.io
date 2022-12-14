@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>gitalk - 标签 - wiz</title>
+        <link>https://blog.wiz.wang/tags/gitalk/</link>
+        <description>gitalk - 标签 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 18 Nov 2019 12:40:36 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/tags/gitalk/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo文档 - 6. 使用Gitalk给网站增加评论功能</title>
+    <link>https://blog.wiz.wang/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Mon, 18 Nov 2019 12:40:36 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[<p>使用Gitalk作为博客网站的评论系统</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>图片仓库 - 标签 - wiz</title>
+        <link>https://blog.wiz.wang/tags/%E5%9B%BE%E7%89%87%E4%BB%93%E5%BA%93/</link>
+        <description>图片仓库 - 标签 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Nov 2021 18:24:57 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/tags/%E5%9B%BE%E7%89%87%E4%BB%93%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>使用文档 - 使用gitee作为图片仓库</title>
+    <link>https://blog.wiz.wang/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/</link>
+    <pubDate>Wed, 17 Nov 2021 18:24:57 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/</guid>
+    <description><![CDATA[<p>把图片存到gitee上, 作为图片仓库</p>]]></description>
+</item></channel>
+</rss>

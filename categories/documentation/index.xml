@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Documentation - 分类 - wiz</title>
+        <link>https://blog.wiz.wang/categories/documentation/</link>
+        <description>Documentation - 分类 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 06 Jan 2022 08:59:42 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/categories/documentation/" rel="self" type="application/rss+xml" /><item>
+    <title>使用文档 - 使用Denyhosts防SSH暴力破解</title>
+    <link>https://blog.wiz.wang/7.%E9%98%B2ssh%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</link>
+    <pubDate>Thu, 06 Jan 2022 08:59:42 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/7.%E9%98%B2ssh%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</guid>
+    <description><![CDATA[<p>最近服务器一直被SSH暴力破解, 就搜索了有关服务器防暴力破解的方法, DenyHosts是一个使用Python写的程序，它会分析sshd的日志文件<code>/var/log/auth.log</code>, 当发现重复的攻击时就会把IP记录到<code>/etc/hosts.deny</code>文件中，从而屏蔽恶意攻击者的IP</p>]]></description>
+</item><item>
+    <title>使用文档 - 配置Typora中的图片上传功能</title>
+    <link>https://blog.wiz.wang/6.%E9%85%8D%E7%BD%AEtypora%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/</link>
+    <pubDate>Wed, 01 Dec 2021 00:59:10 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/6.%E9%85%8D%E7%BD%AEtypora%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/</guid>
+    <description><![CDATA[<p>使用Typora+PicGo+Gitee搭建舒适便捷的个人写作环境</p>]]></description>
+</item><item>
+    <title>使用文档 - 使用gitea搭建git服务器</title>
+    <link>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</link>
+    <pubDate>Sat, 20 Nov 2021 00:45:06 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</guid>
+    <description><![CDATA[<p>搭建属于自己的git服务器, 不用推送到GitHub或者Gitee</p>]]></description>
+</item><item>
+    <title>使用文档 - 使用Halo搭建个人博客网站</title>
+    <link>https://blog.wiz.wang/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Fri, 19 Nov 2021 14:27:18 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[<p>体验一下Halo博客系统, 环境: centos 8.5.2111, docker 20.10.11, halo 1.4.13</p>]]></description>
+</item><item>
+    <title>使用文档 - Ubuntu18.04配置虚拟环境</title>
+    <link>https://blog.wiz.wang/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Wed, 17 Nov 2021 18:44:57 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[<p>ubuntu18.04中安装和使用虚拟环境</p>]]></description>
+</item><item>
+    <title>使用文档 - 使用gitee作为图片仓库</title>
+    <link>https://blog.wiz.wang/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/</link>
+    <pubDate>Wed, 17 Nov 2021 18:24:57 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/5.%E4%BD%BF%E7%94%A8gitee%E5%AD%98%E5%82%A8%E5%9B%BE%E7%89%87/</guid>
+    <description><![CDATA[<p>把图片存到gitee上, 作为图片仓库</p>]]></description>
+</item><item>
+    <title>Hugo文档 - 7. 使用云服务器搭建个人网站</title>
+    <link>https://blog.wiz.wang/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</link>
+    <pubDate>Mon, 25 Nov 2019 22:40:36 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/7.%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/</guid>
+    <description><![CDATA[<p>使用github pages访问网页的速度并不理想, 决定使用云服务器来搭建个人网站</p>]]></description>
+</item><item>
+    <title>Hugo文档 - 6. 使用Gitalk给网站增加评论功能</title>
+    <link>https://blog.wiz.wang/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Mon, 18 Nov 2019 12:40:36 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/6.gitalk%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[<p>使用Gitalk作为博客网站的评论系统</p>]]></description>
+</item><item>
+    <title>Hugo文档 - 5. Shortcodes</title>
+    <link>https://blog.wiz.wang/5.shortcodes/</link>
+    <pubDate>Sun, 17 Mar 2019 18:35:09 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/5.shortcodes/</guid>
+    <description><![CDATA[<p>Hugo 提供了多个内置的 Shortcodes , 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
+</item><item>
+    <title>Hugo文档 - 4. Markdown基本语法</title>
+    <link>https://blog.wiz.wang/4.markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Sun, 17 Mar 2019 18:33:09 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/4.markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[<p>这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.</p>]]></description>
+</item></channel>
+</rss>

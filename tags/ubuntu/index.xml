@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ubuntu - 标签 - wiz</title>
+        <link>https://blog.wiz.wang/tags/ubuntu/</link>
+        <description>ubuntu - 标签 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 06 Jan 2022 08:59:42 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/tags/ubuntu/" rel="self" type="application/rss+xml" /><item>
+    <title>使用文档 - 使用Denyhosts防SSH暴力破解</title>
+    <link>https://blog.wiz.wang/7.%E9%98%B2ssh%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</link>
+    <pubDate>Thu, 06 Jan 2022 08:59:42 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/7.%E9%98%B2ssh%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</guid>
+    <description><![CDATA[<p>最近服务器一直被SSH暴力破解, 就搜索了有关服务器防暴力破解的方法, DenyHosts是一个使用Python写的程序，它会分析sshd的日志文件<code>/var/log/auth.log</code>, 当发现重复的攻击时就会把IP记录到<code>/etc/hosts.deny</code>文件中，从而屏蔽恶意攻击者的IP</p>]]></description>
+</item><item>
+    <title>使用文档 - 使用gitea搭建git服务器</title>
+    <link>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</link>
+    <pubDate>Sat, 20 Nov 2021 00:45:06 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</guid>
+    <description><![CDATA[<p>搭建属于自己的git服务器, 不用推送到GitHub或者Gitee</p>]]></description>
+</item><item>
+    <title>使用文档 - Ubuntu18.04配置虚拟环境</title>
+    <link>https://blog.wiz.wang/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Wed, 17 Nov 2021 18:44:57 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[<p>ubuntu18.04中安装和使用虚拟环境</p>]]></description>
+</item></channel>
+</rss>

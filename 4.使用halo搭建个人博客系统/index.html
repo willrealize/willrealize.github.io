@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">使用文档 - 使用Halo搭建个人博客网站 - wiz</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="使用文档 - 使用Halo搭建个人博客网站" />
+<meta property="og:description" content="体验一下Halo博客系统, 环境: centos 8.5.2111, docker 20.10.11, halo 1.4.13" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wiz.wang/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" /><meta property="og:image" content="https://blog.wiz.wang/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-19T14:27:18+08:00" />
+<meta property="article:modified_time" content="2021-11-19T14:27:18+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.wiz.wang/logo.png"/>
+
+<meta name="twitter:title" content="使用文档 - 使用Halo搭建个人博客网站"/>
+<meta name="twitter:description" content="体验一下Halo博客系统, 环境: centos 8.5.2111, docker 20.10.11, halo 1.4.13"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.wiz.wang/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" /><link rel="prev" href="https://blog.wiz.wang/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" /><link rel="next" href="https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用文档 - 使用Halo搭建个人博客网站",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.wiz.wang\/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F\/"
+        },"genre": "posts","keywords": "halo, 建站, docker, centos","wordcount":  1725 ,
+        "url": "https:\/\/blog.wiz.wang\/4.%E4%BD%BF%E7%94%A8halo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F\/","datePublished": "2021-11-19T14:27:18+08:00","dateModified": "2021-11-19T14:27:18+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"authors": [{
+                    "@type": "Person",
+                    "name": "wiz"
+                }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="wiz">wiz的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="关于">  </a><a class="menu-item" href="/categories/" title="所有分类"> 分类 </a><a class="menu-item" href="/series/" title="所有系列"> 系列 </a><a class="menu-item" href="/tags/" title="所有标签"> 标签 </a><a class="menu-item" href="/posts/" title="所有文章"> 归档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="wiz">wiz的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="输入文章标题或文章内一级标签" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/about/" title="关于"></a><a class="menu-item" href="/categories/" title="所有分类">分类</a><a class="menu-item" href="/series/" title="所有系列">系列</a><a class="menu-item" href="/tags/" title="所有标签">标签</a><a class="menu-item" href="/posts/" title="所有文章">归档</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用文档 - 使用Halo搭建个人博客网站</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.wiz.wang/authors/wiz'>wiz</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">分类 <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-19">2021-11-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-11-19">2021-11-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1725 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装docker">安装Docker</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#启动">启动</a></li>
+        <li><a href="#测试">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装-halo">安装 halo</a>
+      <ul>
+        <li><a href="#创建工作目录">创建工作目录</a></li>
+        <li><a href="#拉取-halo-镜像">拉取 Halo 镜像</a></li>
+        <li><a href="#创建容器">创建容器</a></li>
+        <li><a href="#打开网站">打开网站</a></li>
+      </ul>
+    </li>
+    <li><a href="#博客后台">博客后台</a>
+      <ul>
+        <li><a href="#设置">设置</a></li>
+        <li><a href="#主题">主题</a></li>
+      </ul>
+    </li>
+    <li><a href="#部署">部署</a>
+      <ul>
+        <li><a href="#安装-nginx">安装 Nginx</a></li>
+        <li><a href="#安装目录">安装目录</a></li>
+        <li><a href="#配置证书">配置证书</a>
+          <ul>
+            <li><a href="#申请证书">申请证书</a></li>
+            <li><a href="#上传至服务器">上传至服务器</a></li>
+            <li><a href="#新建配置">新建配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>体验一下Halo博客系统, 环境: centos 8.5.2111, docker 20.10.11, halo 1.4.13</p>
+<h3 id="安装docker">安装Docker</h3>
+<blockquote>
+<p>注意</p>
+<p>1 安装 <code>Docker</code> 请参照官网: <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener noreffer">https://docs.docker.com/engine/install/centos/</a></p>
+<p>2 这里用的是 <code>root</code> 用户, 如果是非 <code>root</code> 用户, 下面的命令前面要加 <code>sudo</code></p>
+</blockquote>
+<p>可以先升级一下 <code>yum</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yum update
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装">安装</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yum install -y yum-utils
+
+yum-config-manager <span class="se">\
+</span><span class="se"></span>    --add-repo <span class="se">\
+</span><span class="se"></span>    https://download.docker.com/linux/centos/docker-ce.repo
+
+yum install docker-ce docker-ce-cli containerd.io
+</code></pre></td></tr></table>
+</div>
+</div><p>如果需要卸载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yum remove docker <span class="se">\
+</span><span class="se"></span>                  docker-client <span class="se">\
+</span><span class="se"></span>                  docker-client-latest <span class="se">\
+</span><span class="se"></span>                  docker-common <span class="se">\
+</span><span class="se"></span>                  docker-latest <span class="se">\
+</span><span class="se"></span>                  docker-latest-logrotate <span class="se">\
+</span><span class="se"></span>                  docker-logrotate <span class="se">\
+</span><span class="se"></span>                  docker-engine
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="启动">启动</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl start docker
+
+<span class="c1"># 其他命令</span>
+systemctl restart docker  <span class="c1"># 重启</span>
+systemctl stop docker  <span class="c1"># 停止</span>
+systemctl status docker  <span class="c1"># 查看状态</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="测试">测试</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run hello-world
+
+<span class="c1"># 看到以下信息代表安装成功</span>
+<span class="o">[</span>root@centos ~<span class="o">]</span><span class="c1"># docker run hello-world</span>
+Unable to find image <span class="s1">&#39;hello-world:latest&#39;</span> locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull <span class="nb">complete</span> 
+Digest: sha256:cc15c5b292d8525effc0f89cb299f1804f3a725c8d05e158653a563f15e4f685
+Status: Downloaded newer image <span class="k">for</span> hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装-halo">安装 halo</h3>
+<p>官方文档: <a href="https://docs.halo.run/getting-started/install/docker" target="_blank" rel="noopener noreffer">https://docs.halo.run/getting-started/install/docker</a></p>
+<p>Halo 在 Docker Hub 上发布的镜像为 <code>halohub/halo</code>: <a href="https://hub.docker.com/r/halohub/halo" target="_blank" rel="noopener noreffer">https://hub.docker.com/r/halohub/halo</a></p>
+<h4 id="创建工作目录">创建工作目录</h4>
+<p>查看什么是<a href="https://docs.halo.run/getting-started/prepare#%e5%b7%a5%e4%bd%9c%e7%9b%ae%e5%bd%95" target="_blank" rel="noopener noreffer">工作目录</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir ~/.halo
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="拉取-halo-镜像">拉取 Halo 镜像</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pull halohub/halo:1.4.13
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>查看最新版本镜像: <a href="https://hub.docker.com/r/halohub/halo" target="_blank" rel="noopener noreffer">https://hub.docker.com/r/halohub/halo</a>, 官方推荐使用具体版本号的镜像，但也提供了 <code>latest</code> 标签的镜像，它始终是最新的。</p>
+</blockquote>
+<h4 id="创建容器">创建容器</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart<span class="o">=</span>unless-stopped halohub/halo:1.4.13
+</code></pre></td></tr></table>
+</div>
+</div><p><code>-it</code>: 开启输入功能并连接伪终端</p>
+<p><code>-d</code>: 后台运行容器</p>
+<p><code>--name</code>: 为容器指定一个名称</p>
+<p><code>-p</code>: 端口映射，格式为 <code>主机(宿主)端口:容器端口</code> ，可在 <code>application.yaml</code> 配置</p>
+<p><code>-v</code>: 工作目录映射。形式为：<code>-v</code> <code>宿主机路径</code>:<code>/root/.halo</code>，后者不能修改</p>
+<p><code>--restart</code>: 建议设置为 <code>unless-stopped</code>，在 Docker 启动的时候自动启动 Halo 容器</p>
+<h4 id="打开网站">打开网站</h4>
+<p>在终端输入指令查看 <code>ip地址</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ifconfig
+</code></pre></td></tr></table>
+</div>
+</div><p>打开 <code>http://ip:8090</code> 即可看到安装引导界面</p>
+<h3 id="博客后台">博客后台</h3>
+<h4 id="设置">设置</h4>
+<p>打开网站后进入设置页面, 配置完成后点击安装, 如下图</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b50094754312956782a.png" title="https://pic.imgdb.cn/item/629a4b50094754312956782a.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b50094754312956782a.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b50094754312956782a.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b50094754312956782a.png, https://pic.imgdb.cn/item/629a4b50094754312956782a.png 1.5x, https://pic.imgdb.cn/item/629a4b50094754312956782a.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b50094754312956782a.png"height="700"width="1550"
+        />
+    </a>
+<blockquote>
+<p>提示</p>
+<p>后台地址: http://192.168.31.220:8090/admin/index.html#/dashboard</p>
+</blockquote>
+<p>进入登录页面, 输入用户密码点击登录</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b50094754312956783d.png" title="https://pic.imgdb.cn/item/629a4b50094754312956783d.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b50094754312956783d.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b50094754312956783d.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b50094754312956783d.png, https://pic.imgdb.cn/item/629a4b50094754312956783d.png 1.5x, https://pic.imgdb.cn/item/629a4b50094754312956783d.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b50094754312956783d.png"height="400"width="1550"
+        />
+    </a>
+<p>下面就是 Halo Dashboard , 博客的后台</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png" title="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png, https://pic.imgdb.cn/item/629a4b5a0947543129568287.png 1.5x, https://pic.imgdb.cn/item/629a4b5a0947543129568287.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b5a0947543129568287.png"height="500"width="1550"
+        />
+    </a>
+<p>点击上图右上角三个按钮中的第一个, 就可以查看博客首页</p>
+<h4 id="主题">主题</h4>
+<p>查看主题在下图中的 外观 - 主题</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png" title="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png, https://pic.imgdb.cn/item/629a4b5a094754312956828a.png 1.5x, https://pic.imgdb.cn/item/629a4b5a094754312956828a.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b5a094754312956828a.png"height="450"width="1550"
+        />
+    </a>
+<p>点击上图中的安装按钮出现下面弹出框, 这里选择使用远程下载来安装主题</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png" title="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png, https://pic.imgdb.cn/item/629a4b5a0947543129568295.png 1.5x, https://pic.imgdb.cn/item/629a4b5a0947543129568295.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b5a0947543129568295.png"height="400"width="1550"
+        />
+    </a>
+<p>安装好后如下图, 点击启用, 再点击设置就可以设置主题了</p>
+<a class="lightgallery" href="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png" title="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png" data-thumbnail="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png">
+        <img
+            class="lazyload"
+            data-src="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png"
+            data-srcset="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png, https://pic.imgdb.cn/item/629a4b5a094754312956829d.png 1.5x, https://pic.imgdb.cn/item/629a4b5a094754312956829d.png 2x"
+            data-sizes="auto"
+            alt="https://pic.imgdb.cn/item/629a4b5a094754312956829d.png"height="400"width="1550"
+        />
+    </a>
+<p>去探索更多吧, 可以从写一篇文章开始!</p>
+<h3 id="部署">部署</h3>
+<p>这里部署使用的是云服务器, 系统是Ubuntu18.04</p>
+<h4 id="安装-nginx">安装 Nginx</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">su root
+apt install nginx
+</code></pre></td></tr></table>
+</div>
+</div><p>安装后测试一下: 如果是云服务器, 要先到控制台打开安全组中的80端口, 然后在浏览器中输入服务器网址, 出现Nginx的欢迎页面代表已经安装成功</p>
+<h4 id="安装目录">安装目录</h4>
+<p>使用apt安装的Nginx的目录使用编译安装的目录不同, 下面为apt安装Nginx的目录</p>
+<ul>
+<li>/usr/sbin/nginx： 主程序</li>
+<li>/usr/share/nginx： 存放静态文件</li>
+<li>/etc/nginx： 存放配置文件</li>
+<li>/var/log/nginx： 存放日志</li>
+<li>/var/www/: 存放项目或站点</li>
+<li>/etc/nginx/conf.d: 配置也可以放到这个目录</li>
+</ul>
+<h4 id="配置证书">配置证书</h4>
+<h5 id="申请证书">申请证书</h5>
+<p>到购买服务器的厂商申请, 在搜索框输入 <strong>SSL证书</strong> 进行搜索, 根据指导操作</p>
+<h5 id="上传至服务器">上传至服务器</h5>
+<p>上传证书后, 把证书压缩文件解压, 里面有多种服务器的证书, 找到其中存放 Nginx证书 的目录, 把证书移动到 Nginx 的安装目录下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 新建一个存放证书的目录, 可以存放多个证书</span>
+mkdir /etc/nginx/certs
+<span class="c1"># 新建存放主域名证书的目录</span>
+mkdir /etc/nginx/certs/main
+<span class="c1"># 进入 Nginx证书目录</span>
+<span class="nb">cd</span> Nginx证书目录
+<span class="c1"># 移动到Nginx安装目录下</span>
+mv ./* /etc/nginx/certs/main
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="新建配置">新建配置</h5>
+<p>Ubuntu 中, 使用 apt 安装的 Nginx, 主配置文件是 /etc/nginx/nginx.conf, 这个文件一般用来配置公用的功能和不常修改的功能, 一般不在这个地方进行具体的配置, 为了不让越来越多的配置导致项目混乱, 会使用目录管理配置, 配置目录有两个:</p>
+<ul>
+<li>/etc/nginx/sites-available: 默认有一个配置模板文件default, 文件中也描述了怎么使用自己创建的配置文件, 如果需要添加配置, 先在这个目录下新建一个名为 xxx 的配置文件, 然后到 /etc/nginx/sites-enabled 目录下使用 ln -s /etc/nginx/sites-available/xxx 添加软链接, 如果不想使用配置, 直接删除软链接即可, 文件名后缀可以使用 .conf, 也可以不用后缀</li>
+<li>/etc/nginx/conf.d: 使用方法是在此目录下直接创建一个配置文件, 只不过文件名后缀必须为 .conf</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /etc/nginx/sites-available
+<span class="c1"># 一般不使用 default 这个文件, 先备份了, 然后删除软连接</span>
+mv defualt ./defualt.back
+rm /etc/nginx/sites-enabled/defualt
+</code></pre></td></tr></table>
+</div>
+</div><p>下面以配置主域名为例, 使用的配置目录为 /etc/nginx/sites-available</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 先添加一个名为 xxx.com 的文件</span>
+vim xxx.com
+
+<span class="c1"># 添加下面内容</span>
+upstream halo <span class="o">{</span>  <span class="c1"># 负载均衡, 官方文档是这样写的, 个人网站很少用到</span>
+        server 127.0.0.1:8090<span class="p">;</span>
+<span class="o">}</span>
+server <span class="o">{</span>  <span class="c1"># 用来把http请求转为https请求, 注: 每个子域名都要配置</span>
+        listen 80<span class="p">;</span>
+        server_name xxx.com www.xxx.com<span class="p">;</span>
+        client_max_body_size 1024m<span class="p">;</span>
+        rewrite ^<span class="o">(</span>.*<span class="o">)</span> https://<span class="nv">$server_name$1</span> permanent<span class="p">;</span>
+<span class="o">}</span>
+server <span class="o">{</span>
+        listen <span class="m">443</span> ssl<span class="p">;</span>
+        ssl on<span class="p">;</span>
+        server_name xxx.com www.xxx.com<span class="p">;</span>
+        
+        ssl_certificate /etc/nginx/certs/main/scsxxx_www.xxx.com_server.crt<span class="p">;</span>
+        ssl_certificate_key /etc/nginx/certs/main/scsxxx_www.xxx.com_server.key<span class="p">;</span>
+        
+        ssl_session_timeout 5m<span class="p">;</span>
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE<span class="p">;</span>
+        ssl_prefer_server_ciphers on<span class="p">;</span>
+        location / <span class="o">{</span>
+                proxy_pass http://halo<span class="p">;</span>  <span class="c1"># 反向代理</span>
+                proxy_set_header HOST <span class="nv">$host</span><span class="p">;</span>
+                proxy_set_header X-Forwarded-Proto <span class="nv">$scheme</span><span class="p">;</span>
+                proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+                proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># 保存退出后创建软链接</span>
+<span class="nb">cd</span> /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/xxx.com
+
+<span class="c1"># 可以先测试一下配置文件, 如果报错就根据报错修改</span>
+nginx -t
+
+<span class="c1"># 重新加载Nginx</span>
+systemctl reload nginx
+<span class="c1"># 或</span>
+nginx -s reload
+
+<span class="c1"># 然后就可以到浏览器打开 xxx.com 了</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/halo/">halo</a>,&nbsp;<a href="/tags/%E5%BB%BA%E7%AB%99/">建站</a>,&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/centos/">centos</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2.ubuntu18.04%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" class="prev" rel="prev" title="使用文档 - Ubuntu18.04配置虚拟环境"><i class="fas fa-angle-left fa-fw"></i>使用文档 - Ubuntu18.04配置虚拟环境</a>
+            <a href="/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" class="next" rel="next" title="使用文档 - 使用gitea搭建git服务器">使用文档 - 使用gitea搭建git服务器<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>. Theme based on <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank">DoIt</a>!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":2,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

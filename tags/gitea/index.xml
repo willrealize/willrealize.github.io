@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>gitea - 标签 - wiz</title>
+        <link>https://blog.wiz.wang/tags/gitea/</link>
+        <description>gitea - 标签 - wiz</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 20 Nov 2021 00:45:06 &#43;0800</lastBuildDate><atom:link href="https://blog.wiz.wang/tags/gitea/" rel="self" type="application/rss+xml" /><item>
+    <title>使用文档 - 使用gitea搭建git服务器</title>
+    <link>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</link>
+    <pubDate>Sat, 20 Nov 2021 00:45:06 &#43;0800</pubDate><author>
+                    <name>wiz</name><uri>https://blog.wiz.wang/authors/wiz</uri></author><guid>https://blog.wiz.wang/3.%E4%BD%BF%E7%94%A8gitea%E6%90%AD%E5%BB%BAgit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</guid>
+    <description><![CDATA[<p>搭建属于自己的git服务器, 不用推送到GitHub或者Gitee</p>]]></description>
+</item></channel>
+</rss>
